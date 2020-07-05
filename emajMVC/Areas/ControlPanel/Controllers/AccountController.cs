@@ -13,6 +13,13 @@ using emajMVC.Models;
 namespace emajMVC.Areas.ControlPanel.Controllers
 {
     //[Authorize]
+    //
+    /// <summary>
+    /// 
+    /// asasa
+    /// asasasa
+    /// 
+    /// </summary>
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
