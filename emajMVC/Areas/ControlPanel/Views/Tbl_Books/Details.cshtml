@@ -1,0 +1,132 @@
+﻿@model emajMVC.Models.Tbl_Books
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tbl_Books</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PagesCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PagesCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            
+            <img src="~/DataFiles/@Html.DisplayFor(model => model.Image)" alt="" id="ImgBook" style="width:100px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleasedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleasedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Published)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Published)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.circulation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.circulation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsTranslated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsTranslated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_authorsAndTranslators.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_authorsAndTranslators.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_authorsAndTranslators1.FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_authorsAndTranslators1.FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_BooksCategories.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_BooksCategories.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_BooksCoverType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_BooksCoverType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_BooksSize.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_BooksSize.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

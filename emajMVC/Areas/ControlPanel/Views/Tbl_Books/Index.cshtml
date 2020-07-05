@@ -1,0 +1,119 @@
+﻿@model IEnumerable<emajMVC.Models.Tbl_Books>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ControlPanel/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name) نام کتاب
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PagesCount) تعداد صفحات
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fi) قیمت
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image) عکس
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN) شابک
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleasedDate) تاریخ چاپ
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Published) نوبت چاپ
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.circulation) تیراژ
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsTranslated) مترجم دارد؟
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_authorsAndTranslators1.FName) نویسنده
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_authorsAndTranslators.FName) مترجم
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_BooksCategories.Name) موضوع کتاب
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_BooksCoverType.Name) کاور کتاب
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_BooksSize.Name) سایز کتاب
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PagesCount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Fi)
+    </td>
+    <td>
+
+        <img src="~/DataFiles/@Html.DisplayFor(modelItem => item.Image)" alt="" id="ImgBook" style="width:100px;" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ISBN)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ReleasedDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Published)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.circulation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsTranslated)
+    </td>
+    <td>
+        @{
+            string AuthorStr = item.Tbl_authorsAndTranslators1.FName + " " + item.Tbl_authorsAndTranslators1.LName;
+        }
+        @Html.Label(AuthorStr)
+    </td>
+    <td>
+        @{
+            string TranslatorStr = item.Tbl_authorsAndTranslators.FName + " " + item.Tbl_authorsAndTranslators.LName;
+        }
+        @Html.Label(TranslatorStr)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tbl_BooksCategories.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tbl_BooksCoverType.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Tbl_BooksSize.Name)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </td>
+</tr>
+}
+
+</table>

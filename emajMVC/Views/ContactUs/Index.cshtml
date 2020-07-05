@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "انتشارات ايماژ - تماس باما";
+    Layout = "~/Views/Shared/_LayoutPiccolo.cshtml";
+}
+
+<!-- Page Content
+    ================================================== -->
+<div class="row" style="direction:rtl !important;">
+    <!-- Sidebar
+    ================================================== -->
+    <div class="span4 sidebar page-sidebar">
+        <!-- Begin sidebar column -->
+        <h5 class="title-bg">آدرس شرکت</h5>
+        <address>
+            <strong>تهران</strong> - ميدان انقلاب - کارگر جنوبي - خيابان روانمهر - ين بست دولتشاهي - ساختمان انديشه (پلاک 1) - واحد 31<br>
+            <abbr title="Phone">تلفن:</abbr> <br />
+            <ul style="list-style-type: none;direction:rtl;text-align:right;">
+                <li><bdi>(21) 66-96-9696</bdi></li>
+                <li><bdi>(21) 66-96-9680</bdi></li>
+                <li><bdi>(21) 66-96-3796</bdi></li>
+                <li><bdi>(21) 66-96-3797</bdi></li>
+            </ul>
+            <abbr title="Phone">فکس:</abbr><bdi>(21) 66-96-9650</bdi> 
+        </address>
+
+        <address>
+            <strong>پست الکترونيک</strong><br>
+            <a href="mailto:info@emaj.ir">info@emaj.ir</a>
+        </address>
+        <h5 class="title-bg">آدرس شرکت در نقشه</h5>
+        <div style="width: 100%; margin-top: 5px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3240.1393991092946!2d51.3907907!3d35.6981871!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0103118718ab%3A0xa1eb2c423ca99cb8!2z2LfYsdin2K3Yp9mGINin2YrZhdin2pg!5e0!3m2!1sen!2s!4v1535375845633" width="100%" height="250px" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+        @*<a href="" target="_blank"><img src="~/img/map.jpg" alt="نقشه"></a>*@
+        
+    </div><!-- End sidebar column -->
+
+    <!--Container row-->
+    <div class="span8 contact">
+        <!--Begin page content column-->
+        <h2>تماس باما</h2>
+        <p>در صورت تمايل مشخصات خود را در ذيل وارد نموده و متن درخواست خود را ارسال نماييد.</p>
+        <div class="alert alert-success">
+            @*Well done! You successfully read this important alert message.*@
+        </div>
+        <form action="#" id="contact-form">
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-user"></i></span>
+                <input class="span4" id="prependedInput" size="16" type="text" placeholder="نام و نام خانوادگي">
+            </div>
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-envelope"></i></span>
+                <input class="span4" id="prependedInput" size="16" type="text" placeholder="پست الکترونيکي">
+            </div>
+            <div class="input-prepend">
+                <span class="add-on"><i class="icon-globe"></i></span>
+                <input class="span4" id="prependedInput" size="16" type="text" placeholder="شماره تلفن">
+            </div>
+            <textarea class="span6"></textarea>
+            <div class="row">
+                <div class="span2">
+                    <input type="submit" class="btn btn-inverse" value="ارسال پيغام">
+                </div>
+            </div>
+        </form>
+    </div> <!--End page content column-->
+</div><!-- End container row -->
+
+

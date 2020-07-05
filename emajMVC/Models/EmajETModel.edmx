@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EmajDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_authorsAndTranslators">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="LName" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Banners">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="varchar(max)" Nullable="false" />
+          <Property Name="Priority" Type="smallint" Nullable="false" />
+          <Property Name="Visiblity" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Books">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AuthorID" Type="int" Nullable="false" />
+          <Property Name="PagesCount" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
+          <Property Name="Fi" Type="money" Nullable="false" />
+          <Property Name="SubjectID" Type="int" Nullable="false" />
+          <Property Name="TranslatorID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="CoverType" Type="int" Nullable="false" />
+          <Property Name="ISBN" Type="bigint" Nullable="false" />
+          <Property Name="ReleasedDate" Type="date" Nullable="false" />
+          <Property Name="PublishedDate" Type="date" Nullable="false" />
+          <Property Name="circulation" Type="int" />
+          <Property Name="IsTranslated" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_BooksCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsChild" Type="bit" Nullable="false" />
+          <Property Name="ParentID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_BooksCoverType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_BooksSize">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="IsRegistered" Type="bit" Nullable="false" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="RegisterDate" Type="date" Nullable="false" />
+          <Property Name="LastLoginDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Discounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DiscountPercent" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="date" Nullable="false" />
+          <Property Name="CustomerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="TFi" Type="money" />
+          <Property Name="Discount" Type="money" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DBemaj.i2.dbo.Tbl_OrderDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tbl_OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="StoreID" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="StoreID" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="money" />
+        </EntityType>
+        <EntityType Name="Tbl_ProductsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Store">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductTypeID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="Count" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tbl_Books_Tbl_authorsAndTranslators">
+          <End Role="Tbl_authorsAndTranslators" Type="Self.Tbl_authorsAndTranslators" Multiplicity="1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_authorsAndTranslators">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_authorsAndTranslators1">
+          <End Role="Tbl_authorsAndTranslators" Type="Self.Tbl_authorsAndTranslators" Multiplicity="1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_authorsAndTranslators">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="TranslatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_BooksCategories">
+          <End Role="Tbl_BooksCategories" Type="Self.Tbl_BooksCategories" Multiplicity="1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_BooksCoverType">
+          <End Role="Tbl_BooksCoverType" Type="Self.Tbl_BooksCoverType" Multiplicity="1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksCoverType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="CoverType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_BooksSize">
+          <End Role="Tbl_BooksSize" Type="Self.Tbl_BooksSize" Multiplicity="1" />
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksSize">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="Size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_BooksCategories_Tbl_BooksCategories">
+          <End Role="Tbl_BooksCategories" Type="Self.Tbl_BooksCategories" Multiplicity="1" />
+          <End Role="Tbl_BooksCategories1" Type="Self.Tbl_BooksCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_BooksCategories1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Discounts_Tbl_Books">
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="1" />
+          <End Role="Tbl_Discounts" Type="Self.Tbl_Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Discounts">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Discounts_Tbl_ProductsType">
+          <End Role="Tbl_ProductsType" Type="Self.Tbl_ProductsType" Multiplicity="1" />
+          <End Role="Tbl_Discounts" Type="Self.Tbl_Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ProductsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Discounts">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Order_Tbl_Customer">
+          <End Role="Tbl_Customer" Type="Self.Tbl_Customer" Multiplicity="0..1" />
+          <End Role="Tbl_Order" Type="Self.Tbl_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_OrderDetail_Tbl_Order">
+          <End Role="Tbl_Order" Type="Self.Tbl_Order" Multiplicity="1" />
+          <End Role="Tbl_OrderDetail" Type="Self.Tbl_OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_OrderDetail_Tbl_Store">
+          <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="1" />
+          <End Role="Tbl_OrderDetail" Type="Self.Tbl_OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Store">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_OrderDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Store_Tbl_Books">
+          <End Role="Tbl_Books" Type="Self.Tbl_Books" Multiplicity="1" />
+          <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Store">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Store_Tbl_ProductsType">
+          <End Role="Tbl_ProductsType" Type="Self.Tbl_ProductsType" Multiplicity="1" />
+          <End Role="Tbl_Store" Type="Self.Tbl_Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ProductsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Store">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EmajDBModelStoreContainer">
+          <EntitySet Name="Tbl_authorsAndTranslators" EntityType="Self.Tbl_authorsAndTranslators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Banners" EntityType="Self.Tbl_Banners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Books" EntityType="Self.Tbl_Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_BooksCategories" EntityType="Self.Tbl_BooksCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_BooksCoverType" EntityType="Self.Tbl_BooksCoverType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_BooksSize" EntityType="Self.Tbl_BooksSize" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Customer" EntityType="Self.Tbl_Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Discounts" EntityType="Self.Tbl_Discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Order" EntityType="Self.Tbl_Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_ProductsType" EntityType="Self.Tbl_ProductsType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Store" EntityType="Self.Tbl_Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_OrderDetail" EntityType="Self.Tbl_OrderDetail" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tbl_OrderDetail].[OrderID] AS [OrderID], 
+    [Tbl_OrderDetail].[StoreID] AS [StoreID], 
+    [Tbl_OrderDetail].[Count] AS [Count], 
+    [Tbl_OrderDetail].[Discount] AS [Discount]
+    FROM [dbo].[Tbl_OrderDetail] AS [Tbl_OrderDetail]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_authorsAndTranslators" Association="Self.FK_Tbl_Books_Tbl_authorsAndTranslators">
+            <End Role="Tbl_authorsAndTranslators" EntitySet="Tbl_authorsAndTranslators" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_authorsAndTranslators1" Association="Self.FK_Tbl_Books_Tbl_authorsAndTranslators1">
+            <End Role="Tbl_authorsAndTranslators" EntitySet="Tbl_authorsAndTranslators" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_BooksCategories" Association="Self.FK_Tbl_Books_Tbl_BooksCategories">
+            <End Role="Tbl_BooksCategories" EntitySet="Tbl_BooksCategories" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_BooksCoverType" Association="Self.FK_Tbl_Books_Tbl_BooksCoverType">
+            <End Role="Tbl_BooksCoverType" EntitySet="Tbl_BooksCoverType" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_BooksSize" Association="Self.FK_Tbl_Books_Tbl_BooksSize">
+            <End Role="Tbl_BooksSize" EntitySet="Tbl_BooksSize" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_BooksCategories_Tbl_BooksCategories" Association="Self.FK_Tbl_BooksCategories_Tbl_BooksCategories">
+            <End Role="Tbl_BooksCategories" EntitySet="Tbl_BooksCategories" />
+            <End Role="Tbl_BooksCategories1" EntitySet="Tbl_BooksCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Discounts_Tbl_Books" Association="Self.FK_Tbl_Discounts_Tbl_Books">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="Tbl_Discounts" EntitySet="Tbl_Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Discounts_Tbl_ProductsType" Association="Self.FK_Tbl_Discounts_Tbl_ProductsType">
+            <End Role="Tbl_ProductsType" EntitySet="Tbl_ProductsType" />
+            <End Role="Tbl_Discounts" EntitySet="Tbl_Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Order_Tbl_Customer" Association="Self.FK_Tbl_Order_Tbl_Customer">
+            <End Role="Tbl_Customer" EntitySet="Tbl_Customer" />
+            <End Role="Tbl_Order" EntitySet="Tbl_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_OrderDetail_Tbl_Order" Association="Self.FK_Tbl_OrderDetail_Tbl_Order">
+            <End Role="Tbl_Order" EntitySet="Tbl_Order" />
+            <End Role="Tbl_OrderDetail" EntitySet="Tbl_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_OrderDetail_Tbl_Store" Association="Self.FK_Tbl_OrderDetail_Tbl_Store">
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+            <End Role="Tbl_OrderDetail" EntitySet="Tbl_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Store_Tbl_Books" Association="Self.FK_Tbl_Store_Tbl_Books">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Store_Tbl_ProductsType" Association="Self.FK_Tbl_Store_Tbl_ProductsType">
+            <End Role="Tbl_ProductsType" EntitySet="Tbl_ProductsType" />
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmajDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="EmajDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Tbl_authorsAndTranslators" EntityType="EmajDBModel.Tbl_authorsAndTranslators" />
+          <EntitySet Name="Tbl_Banners" EntityType="EmajDBModel.Tbl_Banners" />
+          <EntitySet Name="Tbl_Books" EntityType="EmajDBModel.Tbl_Books" />
+          <EntitySet Name="Tbl_BooksCategories" EntityType="EmajDBModel.Tbl_BooksCategories" />
+          <EntitySet Name="Tbl_BooksCoverType" EntityType="EmajDBModel.Tbl_BooksCoverType" />
+          <EntitySet Name="Tbl_BooksSize" EntityType="EmajDBModel.Tbl_BooksSize" />
+          <EntitySet Name="Tbl_Customer" EntityType="EmajDBModel.Tbl_Customer" />
+          <EntitySet Name="Tbl_Discounts" EntityType="EmajDBModel.Tbl_Discounts" />
+          <EntitySet Name="Tbl_Order" EntityType="EmajDBModel.Tbl_Order" />
+          <EntitySet Name="Tbl_ProductsType" EntityType="EmajDBModel.Tbl_ProductsType" />
+          <EntitySet Name="Tbl_Store" EntityType="EmajDBModel.Tbl_Store" />
+          <EntitySet Name="Tbl_OrderDetail" EntityType="EmajDBModel.Tbl_OrderDetail" />
+          <AssociationSet Name="FK_Tbl_Books_Tbl_authorsAndTranslators" Association="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators">
+            <End Role="Tbl_authorsAndTranslators" EntitySet="Tbl_authorsAndTranslators" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_authorsAndTranslators1" Association="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators1">
+            <End Role="Tbl_authorsAndTranslators" EntitySet="Tbl_authorsAndTranslators" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_BooksCategories" Association="EmajDBModel.FK_Tbl_Books_Tbl_BooksCategories">
+            <End Role="Tbl_BooksCategories" EntitySet="Tbl_BooksCategories" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_BooksCoverType" Association="EmajDBModel.FK_Tbl_Books_Tbl_BooksCoverType">
+            <End Role="Tbl_BooksCoverType" EntitySet="Tbl_BooksCoverType" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Books_Tbl_BooksSize" Association="EmajDBModel.FK_Tbl_Books_Tbl_BooksSize">
+            <End Role="Tbl_BooksSize" EntitySet="Tbl_BooksSize" />
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Discounts_Tbl_Books" Association="EmajDBModel.FK_Tbl_Discounts_Tbl_Books">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="Tbl_Discounts" EntitySet="Tbl_Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Store_Tbl_Books" Association="EmajDBModel.FK_Tbl_Store_Tbl_Books">
+            <End Role="Tbl_Books" EntitySet="Tbl_Books" />
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_BooksCategories_Tbl_BooksCategories" Association="EmajDBModel.FK_Tbl_BooksCategories_Tbl_BooksCategories">
+            <End Role="Tbl_BooksCategories" EntitySet="Tbl_BooksCategories" />
+            <End Role="Tbl_BooksCategories1" EntitySet="Tbl_BooksCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Order_Tbl_Customer" Association="EmajDBModel.FK_Tbl_Order_Tbl_Customer">
+            <End Role="Tbl_Customer" EntitySet="Tbl_Customer" />
+            <End Role="Tbl_Order" EntitySet="Tbl_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Discounts_Tbl_ProductsType" Association="EmajDBModel.FK_Tbl_Discounts_Tbl_ProductsType">
+            <End Role="Tbl_ProductsType" EntitySet="Tbl_ProductsType" />
+            <End Role="Tbl_Discounts" EntitySet="Tbl_Discounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_OrderDetail_Tbl_Order" Association="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Order">
+            <End Role="Tbl_Order" EntitySet="Tbl_Order" />
+            <End Role="Tbl_OrderDetail" EntitySet="Tbl_OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_Store_Tbl_ProductsType" Association="EmajDBModel.FK_Tbl_Store_Tbl_ProductsType">
+            <End Role="Tbl_ProductsType" EntitySet="Tbl_ProductsType" />
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tbl_OrderDetail_Tbl_Store" Association="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Store">
+            <End Role="Tbl_Store" EntitySet="Tbl_Store" />
+            <End Role="Tbl_OrderDetail" EntitySet="Tbl_OrderDetail" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Tbl_authorsAndTranslators">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Books" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators" FromRole="Tbl_authorsAndTranslators" ToRole="Tbl_Books" />
+          <NavigationProperty Name="Tbl_Books1" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators1" FromRole="Tbl_authorsAndTranslators" ToRole="Tbl_Books" />
+        </EntityType>
+        <EntityType Name="Tbl_Banners">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Priority" Type="Int16" Nullable="false" />
+          <Property Name="Visiblity" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Books">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorID" Type="Int32" Nullable="false" />
+          <Property Name="PagesCount" Type="Int32" Nullable="false" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <Property Name="Fi" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="SubjectID" Type="Int32" Nullable="false" />
+          <Property Name="TranslatorID" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CoverType" Type="Int32" Nullable="false" />
+          <Property Name="ISBN" Type="Int64" Nullable="false" />
+          <Property Name="ReleasedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PublishedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="circulation" Type="Int32" />
+          <Property Name="IsTranslated" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Tbl_authorsAndTranslators" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators" FromRole="Tbl_Books" ToRole="Tbl_authorsAndTranslators" />
+          <NavigationProperty Name="Tbl_authorsAndTranslators1" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators1" FromRole="Tbl_Books" ToRole="Tbl_authorsAndTranslators" />
+          <NavigationProperty Name="Tbl_BooksCategories" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_BooksCategories" FromRole="Tbl_Books" ToRole="Tbl_BooksCategories" />
+          <NavigationProperty Name="Tbl_BooksCoverType" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_BooksCoverType" FromRole="Tbl_Books" ToRole="Tbl_BooksCoverType" />
+          <NavigationProperty Name="Tbl_BooksSize" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_BooksSize" FromRole="Tbl_Books" ToRole="Tbl_BooksSize" />
+          <NavigationProperty Name="Tbl_Discounts" Relationship="EmajDBModel.FK_Tbl_Discounts_Tbl_Books" FromRole="Tbl_Books" ToRole="Tbl_Discounts" />
+          <NavigationProperty Name="Tbl_Store" Relationship="EmajDBModel.FK_Tbl_Store_Tbl_Books" FromRole="Tbl_Books" ToRole="Tbl_Store" />
+        </EntityType>
+        <EntityType Name="Tbl_BooksCategories">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsChild" Type="Boolean" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tbl_Books" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_BooksCategories" FromRole="Tbl_BooksCategories" ToRole="Tbl_Books" />
+          <NavigationProperty Name="Tbl_BooksCategories1" Relationship="EmajDBModel.FK_Tbl_BooksCategories_Tbl_BooksCategories" FromRole="Tbl_BooksCategories" ToRole="Tbl_BooksCategories1" />
+          <NavigationProperty Name="Tbl_BooksCategories2" Relationship="EmajDBModel.FK_Tbl_BooksCategories_Tbl_BooksCategories" FromRole="Tbl_BooksCategories1" ToRole="Tbl_BooksCategories" />
+        </EntityType>
+        <EntityType Name="Tbl_BooksCoverType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Books" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_BooksCoverType" FromRole="Tbl_BooksCoverType" ToRole="Tbl_Books" />
+        </EntityType>
+        <EntityType Name="Tbl_BooksSize">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Books" Relationship="EmajDBModel.FK_Tbl_Books_Tbl_BooksSize" FromRole="Tbl_BooksSize" ToRole="Tbl_Books" />
+        </EntityType>
+        <EntityType Name="Tbl_Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="IsRegistered" Type="Boolean" Nullable="false" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Tbl_Order" Relationship="EmajDBModel.FK_Tbl_Order_Tbl_Customer" FromRole="Tbl_Customer" ToRole="Tbl_Order" />
+        </EntityType>
+        <EntityType Name="Tbl_Discounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DiscountPercent" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Tbl_Books" Relationship="EmajDBModel.FK_Tbl_Discounts_Tbl_Books" FromRole="Tbl_Discounts" ToRole="Tbl_Books" />
+          <NavigationProperty Name="Tbl_ProductsType" Relationship="EmajDBModel.FK_Tbl_Discounts_Tbl_ProductsType" FromRole="Tbl_Discounts" ToRole="Tbl_ProductsType" />
+        </EntityType>
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CustomerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TFi" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Discount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Tbl_Customer" Relationship="EmajDBModel.FK_Tbl_Order_Tbl_Customer" FromRole="Tbl_Order" ToRole="Tbl_Customer" />
+          <NavigationProperty Name="Tbl_OrderDetail" Relationship="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Order" FromRole="Tbl_Order" ToRole="Tbl_OrderDetail" />
+        </EntityType>
+        <EntityType Name="Tbl_ProductsType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tbl_Discounts" Relationship="EmajDBModel.FK_Tbl_Discounts_Tbl_ProductsType" FromRole="Tbl_ProductsType" ToRole="Tbl_Discounts" />
+          <NavigationProperty Name="Tbl_Store" Relationship="EmajDBModel.FK_Tbl_Store_Tbl_ProductsType" FromRole="Tbl_ProductsType" ToRole="Tbl_Store" />
+        </EntityType>
+        <EntityType Name="Tbl_Store">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Tbl_Books" Relationship="EmajDBModel.FK_Tbl_Store_Tbl_Books" FromRole="Tbl_Store" ToRole="Tbl_Books" />
+          <NavigationProperty Name="Tbl_ProductsType" Relationship="EmajDBModel.FK_Tbl_Store_Tbl_ProductsType" FromRole="Tbl_Store" ToRole="Tbl_ProductsType" />
+          <NavigationProperty Name="Tbl_OrderDetail" Relationship="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Store" FromRole="Tbl_Store" ToRole="Tbl_OrderDetail" />
+        </EntityType>
+        <EntityType Name="Tbl_OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="StoreID" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Tbl_Order" Relationship="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Order" FromRole="Tbl_OrderDetail" ToRole="Tbl_Order" />
+          <NavigationProperty Name="Tbl_Store" Relationship="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Store" FromRole="Tbl_OrderDetail" ToRole="Tbl_Store" />
+        </EntityType>
+        <Association Name="FK_Tbl_Books_Tbl_authorsAndTranslators">
+          <End Type="EmajDBModel.Tbl_authorsAndTranslators" Role="Tbl_authorsAndTranslators" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_authorsAndTranslators">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="AuthorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_authorsAndTranslators1">
+          <End Type="EmajDBModel.Tbl_authorsAndTranslators" Role="Tbl_authorsAndTranslators" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_authorsAndTranslators">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="TranslatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_BooksCategories">
+          <End Type="EmajDBModel.Tbl_BooksCategories" Role="Tbl_BooksCategories" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="SubjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_BooksCoverType">
+          <End Type="EmajDBModel.Tbl_BooksCoverType" Role="Tbl_BooksCoverType" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksCoverType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="CoverType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Books_Tbl_BooksSize">
+          <End Type="EmajDBModel.Tbl_BooksSize" Role="Tbl_BooksSize" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Books" Role="Tbl_Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksSize">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Books">
+              <PropertyRef Name="Size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Discounts_Tbl_Books">
+          <End Type="EmajDBModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Discounts" Role="Tbl_Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Discounts">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Store_Tbl_Books">
+          <End Type="EmajDBModel.Tbl_Books" Role="Tbl_Books" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Store" Role="Tbl_Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Store">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_BooksCategories_Tbl_BooksCategories">
+          <End Type="EmajDBModel.Tbl_BooksCategories" Role="Tbl_BooksCategories" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_BooksCategories" Role="Tbl_BooksCategories1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_BooksCategories">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_BooksCategories1">
+              <PropertyRef Name="ParentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Order_Tbl_Customer">
+          <End Type="EmajDBModel.Tbl_Customer" Role="Tbl_Customer" Multiplicity="0..1" />
+          <End Type="EmajDBModel.Tbl_Order" Role="Tbl_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Discounts_Tbl_ProductsType">
+          <End Type="EmajDBModel.Tbl_ProductsType" Role="Tbl_ProductsType" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Discounts" Role="Tbl_Discounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ProductsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Discounts">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_OrderDetail_Tbl_Order">
+          <End Type="EmajDBModel.Tbl_Order" Role="Tbl_Order" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_OrderDetail" Role="Tbl_OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Order">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_OrderDetail">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_Store_Tbl_ProductsType">
+          <End Type="EmajDBModel.Tbl_ProductsType" Role="Tbl_ProductsType" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_Store" Role="Tbl_Store" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_ProductsType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_Store">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tbl_OrderDetail_Tbl_Store">
+          <End Type="EmajDBModel.Tbl_Store" Role="Tbl_Store" Multiplicity="1" />
+          <End Type="EmajDBModel.Tbl_OrderDetail" Role="Tbl_OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Store">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tbl_OrderDetail">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmajDBModelStoreContainer" CdmEntityContainer="EmajDBEntities">
+          <EntitySetMapping Name="Tbl_authorsAndTranslators">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_authorsAndTranslators">
+              <MappingFragment StoreEntitySet="Tbl_authorsAndTranslators">
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Banners">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_Banners">
+              <MappingFragment StoreEntitySet="Tbl_Banners">
+                <ScalarProperty Name="Visiblity" ColumnName="Visiblity" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Books">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_Books">
+              <MappingFragment StoreEntitySet="Tbl_Books">
+                <ScalarProperty Name="IsTranslated" ColumnName="IsTranslated" />
+                <ScalarProperty Name="circulation" ColumnName="circulation" />
+                <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+                <ScalarProperty Name="ReleasedDate" ColumnName="ReleasedDate" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="CoverType" ColumnName="CoverType" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TranslatorID" ColumnName="TranslatorID" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="Fi" ColumnName="Fi" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="PagesCount" ColumnName="PagesCount" />
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_BooksCategories">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_BooksCategories">
+              <MappingFragment StoreEntitySet="Tbl_BooksCategories">
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="IsChild" ColumnName="IsChild" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_BooksCoverType">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_BooksCoverType">
+              <MappingFragment StoreEntitySet="Tbl_BooksCoverType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_BooksSize">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_BooksSize">
+              <MappingFragment StoreEntitySet="Tbl_BooksSize">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Customer">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_Customer">
+              <MappingFragment StoreEntitySet="Tbl_Customer">
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="IsRegistered" ColumnName="IsRegistered" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Discounts">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_Discounts">
+              <MappingFragment StoreEntitySet="Tbl_Discounts">
+                <ScalarProperty Name="DiscountPercent" ColumnName="DiscountPercent" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Order">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_Order">
+              <MappingFragment StoreEntitySet="Tbl_Order">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="TFi" ColumnName="TFi" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ProductsType">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_ProductsType">
+              <MappingFragment StoreEntitySet="Tbl_ProductsType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Store">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_Store">
+              <MappingFragment StoreEntitySet="Tbl_Store">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_OrderDetail">
+            <EntityTypeMapping TypeName="EmajDBModel.Tbl_OrderDetail">
+              <MappingFragment StoreEntitySet="Tbl_OrderDetail">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

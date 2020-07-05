@@ -1,0 +1,10 @@
+            <div class="span2" style="text-align:center;">
+                <!--Search-->
+                <div class="input-append" style="text-align:right;">
+                    <form action="#">
+                        <input id="appendedInputButton" type="text" placeholder="Search" style="height:25px;">
+                        <button class="btn" type="button"><i class="icon-search"></i></button>
+                    </form>
+                </div>
+                <!--Search-->
+            </div>

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<emajMVC.Models.Tbl_Books>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PagesCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleasedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.circulation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsTranslated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_authorsAndTranslators.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_authorsAndTranslators1.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_BooksCategories.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_BooksCoverType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tbl_BooksSize.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PagesCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReleasedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PublishedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.circulation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsTranslated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_authorsAndTranslators.FName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_authorsAndTranslators1.FName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_BooksCategories.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_BooksCoverType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tbl_BooksSize.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

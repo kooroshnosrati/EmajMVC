@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d6d4e41fae254919b5fd32eb0262f67f" Name="Diagram1" ZoomLevel="91">
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_authorsAndTranslators" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_Banners" Width="1.5" PointX="5.75" PointY="7" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_Books" Width="1.5" PointX="3" PointY="2.25" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_BooksCategories" Width="1.5" PointX="0.75" PointY="9.625" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_BooksCoverType" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_BooksSize" Width="1.5" PointX="0.75" PointY="7.25" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_Customer" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_Discounts" Width="1.5" PointX="5.25" PointY="3.875" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_Order" Width="1.5" PointX="5.25" PointY="12.25" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_ProductsType" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_Store" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="EmajDBModel.Tbl_OrderDetail" Width="1.5" PointX="7.5" PointY="0.875" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Books_Tbl_authorsAndTranslators1" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Books_Tbl_BooksCategories" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Books_Tbl_BooksCoverType" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Books_Tbl_BooksSize" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Discounts_Tbl_Books" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Store_Tbl_Books" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_BooksCategories_Tbl_BooksCategories" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Order_Tbl_Customer" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Discounts_Tbl_ProductsType" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Order" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_Store_Tbl_ProductsType" />
+        <AssociationConnector Association="EmajDBModel.FK_Tbl_OrderDetail_Tbl_Store" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
