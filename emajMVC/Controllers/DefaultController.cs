@@ -12,6 +12,8 @@ namespace emajMVC.Controllers
         public ActionResult Index()
         {
             return RedirectToAction("Index", "Default", new { area = "Site" });
+
+            //asas
         }
     }
 }
